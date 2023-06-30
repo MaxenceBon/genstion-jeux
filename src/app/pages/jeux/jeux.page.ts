@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Jeu, JeuService } from 'src/app/service/jeu.service';
 
 @Component({
   selector: 'app-jeux',
@@ -11,10 +12,12 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class JeuxPage implements OnInit {
-
+jeux!: Jeu[];
+private jeuService: JeuService = inject(JeuService);
   constructor() { }
 
   ngOnInit() {
+    this.jeux = this.jeuService.getAll();
   }
 
 }
