@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Joueur, JoueurService } from 'src/app/service/joueur.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-joueurs',
@@ -11,10 +12,15 @@ import { Joueur, JoueurService } from 'src/app/service/joueur.service';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
+
 export class JoueursPage implements OnInit {
 joueurs!: Joueur[];
 private joueurService: JoueurService = inject(JoueurService);
-  constructor() { }
+  constructor(private router: Router) { }
+
+  joueurDetails(joueur: Joueur) {
+    this.router.navigate(['/joueurs-details', joueur.id]);
+  }
 
   ngOnInit() {
     this.joueurs = this.joueurService.getAll()

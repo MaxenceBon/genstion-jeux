@@ -7,14 +7,13 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let joueur of joueurs"> 
-      <ion-item>
+      <ion-item (click)="joueurDetails(joueur)">
         <ion-chip>
           <ion-avatar>
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
           <ion-label>{{joueur.firstName}} {{joueur.lastName}}</ion-label>
         </ion-chip>
-        <ion-label>nombre de victoires = {{joueur.gamesWon}}</ion-label>
       </ion-item> 
       <ion-item-options side="end"> <ion-item-option color="danger">Delete </ion-item-option> </ion-item-options>
     </ion-item-sliding> 

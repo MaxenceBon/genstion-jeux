@@ -12,11 +12,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Accueil', url: '/home', icon: 'home' },
-    { title: 'Joueurs', url: '/joueurs', icon: 'accessibility' },
-    { title: 'Jeux', url: '/jeux', icon: 'game-controller' },
-    { title: 'Parties', url: '/parties', icon: 'beer' },
-    { title: 'Tournois', url: '/tournois', icon: 'ribbon' },
+    { title: 'Accueil', url: 'home', icon: 'home' },
+    { title: 'Joueurs', url: 'joueurs', icon: 'accessibility' },
+    { title: 'Jeux', url: 'jeux', icon: 'game-controller' },
+    { title: 'Parties', url: 'parties', icon: 'beer' },
+    { title: 'Tournois', url: 'tournois', icon: 'ribbon' },
   ];
   constructor() {}
 }
