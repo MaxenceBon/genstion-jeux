@@ -19,7 +19,8 @@ private joueurService: JoueurService = inject(JoueurService);
   constructor(private router: Router) { }
 
   joueurDetails(joueur: Joueur) {
-    this.router.navigate(['/joueurs-details', joueur.id]);
+    this.joueurService.setCurrentJoueur(joueur);
+    this.router.navigateByUrl('joueurs-details');
   }
 
   ngOnInit() {

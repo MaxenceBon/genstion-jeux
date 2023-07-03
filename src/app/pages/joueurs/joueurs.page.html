@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Roster</ion-title>
+    <ion-title>Joueurs</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list lines="none">
     <ion-item-sliding *ngFor="let joueur of joueurs"> 
       <ion-item (click)="joueurDetails(joueur)">
         <ion-chip>
@@ -15,7 +15,7 @@
           <ion-label>{{joueur.firstName}} {{joueur.lastName}}</ion-label>
         </ion-chip>
       </ion-item> 
-      <ion-item-options side="end"> <ion-item-option color="danger">Delete </ion-item-option> </ion-item-options>
+      <ion-item-options side="end"> <ion-item-option color="danger">Delete</ion-item-option> </ion-item-options>
     </ion-item-sliding> 
   </ion-list> 
 </ion-content>
