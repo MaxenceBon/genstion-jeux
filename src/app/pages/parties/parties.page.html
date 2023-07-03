@@ -4,10 +4,79 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">parties</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list lines="none">
+    <ion-item *ngFor="let partie of parties; let i = index">
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">{{partie.libelle}}</ion-card-title>
+          <ion-card-subtitle>
+            <ion-list lines="none">
+              <ion-label>Liste des joueurs</ion-label>
+              <ion-item *ngFor="let joueur of partie.joueurs">
+                <ion-item>
+                  <ion-chip>
+                    <ion-avatar>
+                      <img alt="Silhouette of a person's head"
+                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                    </ion-avatar>
+                    <ion-label>{{joueur.prenom}} {{joueur.nom}}</ion-label>
+                  </ion-chip>
+                </ion-item>
+              </ion-item>
+            </ion-list>
+
+            <ion-item *ngFor="let jeu of partie.jeux">
+              <ion-item>
+                <img alt="Image du jeu" height="150 px" width="300 px" src="assets/images/{{jeu.titre}}.jpg" />
+              </ion-item>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>Gagnant : {{partie.gagnant}}</ion-label>
+            </ion-item>
+
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-buttons>
+            <ion-button fill="solid" color="success">Selectionner gagnant</ion-button>
+            <ion-button (click)="deletePartie(i)" fill="solid" color="danger">Delete</ion-button>
+          </ion-buttons>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-card color="success">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-item>
+          <ion-label position="floating">Nom de la partie</ion-label>
+          <ion-input [(ngModel)]="partieName"></ion-input>
+        </ion-item>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Selection des joueurs</ion-label>
+        <ion-select multiple [(ngModel)]="selectedJoueurs">
+          <ion-select-option *ngFor="let joueur of joueurs" [value]="getFullName(joueur)">
+            {{ joueur.prenom }} {{ joueur.nom }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Selection du jeu</ion-label>
+        <ion-select multiple [(ngModel)]="selectedJeux">
+          <ion-select-option *ngFor="let jeu of jeux" [value]="getTitre(jeu)">
+            {{ jeu.titre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+
+      <ion-button expand="block" (click)="createPartie()">Créer la partie</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

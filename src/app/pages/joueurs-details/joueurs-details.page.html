@@ -14,14 +14,14 @@
   </ion-item>
   <ion-item>
     <ion-label>Prénom:</ion-label>
-    <ion-input [(ngModel)]="editedJoueur.firstName"></ion-input>
+    <ion-input [(ngModel)]="editedJoueur.prenom"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Nom:</ion-label>
-    <ion-input [(ngModel)]="editedJoueur.lastName"></ion-input>
+    <ion-input [(ngModel)]="editedJoueur.nom"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Parties gagnées: {{ joueur.gamesWon }}</ion-label>
+    <ion-label>Parties gagnées: {{ joueur.partiesGagnees }}</ion-label>
   </ion-item>
   <ion-item>
     <ion-button (click)="uploadPhoto()">
@@ -37,4 +37,3 @@
     </ion-button>
   </ion-item>
 </ion-content>
-

@@ -14,13 +14,27 @@ import { Router } from '@angular/router';
 })
 
 export class JoueursPage implements OnInit {
-joueurs!: Joueur[];
-private joueurService: JoueurService = inject(JoueurService);
+  joueurs!: Joueur[];
+  joueurNom!: string;
+  joueurPrenom!: string;
+  private joueurService: JoueurService = inject(JoueurService);
   constructor(private router: Router) { }
+
+  createJoueur(): void {
+    if (this.joueurNom && this.joueurPrenom) {
+      this.joueurService.createJoueur(this.joueurNom, this.joueurPrenom);
+      this.joueurNom = '';
+      this.joueurPrenom = '';
+    }
+  }
 
   joueurDetails(joueur: Joueur) {
     this.joueurService.setCurrentJoueur(joueur);
     this.router.navigateByUrl('joueurs-details');
+  }
+
+  deleteJoueur(index: number): void {
+    this.joueurService.deleteJoueur(index);
   }
 
   ngOnInit() {

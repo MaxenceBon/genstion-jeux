@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 
+export interface Jeu {
+  titre: string;
+  type: string;
+  nombreDeJoueurs: number;
+  duree: number;
+  description?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class JeuService {
-public jeux: Jeu[] = 
-[
-  {name: 'Risk', type: 'Jeu de stratégie', numberOfPlayers:6, lenght:12, description: 'Les joueurs capturent des territoires'},
-  {name: 'Mysterium', type: 'Jeu d\'ambiance', numberOfPlayers:5, lenght:20},
-  {name: 'Pandemic', type: 'Jeu de réflexion', numberOfPlayers:7, lenght:30},
-]
+  public jeux: Jeu[];
 
-getAll(){
-  return this.jeux;
-}
-  constructor() { }
-}
+  constructor() {
+    this.jeux = [
+      { titre: 'Risk', type: 'Jeu de stratégie', nombreDeJoueurs: 6, duree: 12, description: 'Les joueurs capturent des territoires' },
+      { titre: 'Mysterium', type: 'Jeu d\'ambiance', nombreDeJoueurs: 5, duree: 20 },
+      { titre: 'Pandemic', type: 'Jeu de réflexion', nombreDeJoueurs: 7, duree: 30 },
+    ]
+  }
 
-export interface Jeu {
-  name: string;
-  type: string;
-  numberOfPlayers: number;
-  lenght: number;
-  description?: string;
+  getAll() {
+    return this.jeux;
+  }
 }

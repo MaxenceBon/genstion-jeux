@@ -6,16 +6,34 @@
 
 <ion-content>
   <ion-list lines="none">
-    <ion-item-sliding *ngFor="let joueur of joueurs"> 
-      <ion-item (click)="joueurDetails(joueur)">
-        <ion-chip>
+    <ion-item-sliding *ngFor="let joueur of joueurs; let i = index">
+      <ion-item>
+        <ion-chip (click)="joueurDetails(joueur)">
           <ion-avatar>
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
-          <ion-label>{{joueur.firstName}} {{joueur.lastName}}</ion-label>
+          <ion-label>{{joueur.prenom}} {{joueur.nom}}</ion-label>
         </ion-chip>
-      </ion-item> 
+        <ion-button color="danger" (click)="deleteJoueur(i)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
       <ion-item-options side="end"> <ion-item-option color="danger">Delete</ion-item-option> </ion-item-options>
-    </ion-item-sliding> 
-  </ion-list> 
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-card color="success">
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input [(ngModel)]="joueurNom"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Prénom</ion-label>
+        <ion-input [(ngModel)]="joueurPrenom"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="createJoueur()">Créer le joueur</ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

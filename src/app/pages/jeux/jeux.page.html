@@ -6,17 +6,17 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let jeu of jeux"> 
+    <ion-item-sliding *ngFor="let jeu of jeux">
       <ion-card>
-        <img alt="Image du jeu" height="150 px" width="300 px" src="assets/images/{{jeu.name}}.jpg" />
+        <img alt="Image du jeu" height="150 px" width="300 px" src="assets/images/{{jeu.titre}}.jpg" />
         <ion-card-header>
-          <ion-card-title>{{jeu.name}}</ion-card-title>
+          <ion-card-title>{{jeu.titre}}</ion-card-title>
           <ion-card-subtitle>{{jeu.type}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
           {{jeu.description}}
         </ion-card-content>
       </ion-card>
-    </ion-item-sliding> 
-  </ion-list> 
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

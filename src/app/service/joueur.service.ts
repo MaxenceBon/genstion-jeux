@@ -1,42 +1,52 @@
 import { Injectable } from '@angular/core';
 
 export interface Joueur {
-  id: number;
-  firstName: string;
-  lastName: string;
-  gamesWon?: number;
+  prenom: string;
+  nom: string;
+  partiesGagnees?: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class JoueurService {
-  private currentJoueurs!: Joueur;
+  private currentJoueur!: Joueur;
   private joueurs: Joueur[];
-  
+
   constructor() {
     this.joueurs = [
-      {id:1 , firstName: 'Hercules', lastName: 'Buto', gamesWon:4},
-      {id:2 , firstName: 'Sybille', lastName: 'Boquet'},
-      {id:3 , firstName: 'Albert', lastName: 'Zercker'},
-      {id:4 , firstName: 'Flora', lastName: 'Daigoux'},
-      {id:5 , firstName: 'Alphonse', lastName: 'Danlta'}
+      { prenom: 'Hercules', nom: 'Buto', partiesGagnees: 4 },
+      { prenom: 'Sybille', nom: 'Boquet' },
+      { prenom: 'Albert', nom: 'Zercker' },
+      { prenom: 'Flora', nom: 'Daigoux' },
+      { prenom: 'Alphonse', nom: 'Danlta' }
     ]
   }
 
-  getAll(){
+  createJoueur(joueurNom: string, joueurPrenom: string): void {
+    const joueur: Joueur = {
+      prenom: joueurPrenom,
+      nom: joueurNom,
+    };
+    this.joueurs.push(joueur);
+  }
+
+  deleteJoueur(index: number): void {
+    if (index >= 0 && index < this.joueurs.length) {
+      this.joueurs.splice(index, 1);
+    }
+  }
+
+  getAll() {
     return this.joueurs;
   }
 
   setCurrentJoueur(joueur: Joueur) {
-    this.currentJoueurs = joueur;
-  }
-  getCurrentJoueur(): Joueur {
-    return this.currentJoueurs;
+    this.currentJoueur = joueur;
   }
 
-  getJoueurById(id: number){
-    return this.joueurs.find(joueur => joueur.id === id);
+  getCurrentJoueur(): Joueur {
+    return this.currentJoueur;
   }
 
 }
