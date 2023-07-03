@@ -9,6 +9,10 @@
 
 <ion-content>
   <ion-item>
+    <ion-label>Avatar:</ion-label>
+    <img [src]="avatarImage" *ngIf="avatarImage" width="100" height="100">
+  </ion-item>
+  <ion-item>
     <ion-label>Prénom:</ion-label>
     <ion-input [(ngModel)]="editedJoueur.firstName"></ion-input>
   </ion-item>
@@ -18,6 +22,11 @@
   </ion-item>
   <ion-item>
     <ion-label>Parties gagnées: {{ joueur.gamesWon }}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="uploadPhoto()">
+      Ajouter une photo
+    </ion-button>
   </ion-item>
   <ion-item>
     <ion-button (click)="save()">
