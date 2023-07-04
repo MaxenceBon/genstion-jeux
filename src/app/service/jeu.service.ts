@@ -21,7 +21,8 @@ export class JeuService {
       { titre: 'Pandemic', type: 'Jeu de réflexion', nombreDeJoueurs: 7, duree: 30 },
     ]
   }
-
+  
+  //Méthode pour récupérer l'ensemble des jeux
   getAll() {
     return this.jeux;
   }

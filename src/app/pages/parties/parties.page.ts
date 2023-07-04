@@ -24,10 +24,8 @@ export class PartiesPage implements OnInit {
   private partieService: PartieService = inject(PartieService);
   private joueurService: JoueurService = inject(JoueurService);
   private jeuService: JeuService = inject(JeuService);
-  private actionSheetController: ActionSheetController = inject(ActionSheetController);
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
     this.parties = this.partieService.getAll();

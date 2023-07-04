@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -11,6 +11,8 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class AppComponent {
+  private router: Router = inject(Router);
+
   public appPages = [
     { title: 'Accueil', url: 'home', icon: 'home' },
     { title: 'Joueurs', url: 'joueurs', icon: 'accessibility' },
@@ -19,4 +21,9 @@ export class AppComponent {
     { title: 'Tournois', url: 'tournois', icon: 'ribbon' },
   ];
   constructor() {}
+
+  navigateTo(url: string) {
+    this.router.navigateByUrl(url);
+  }
+
 }

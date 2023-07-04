@@ -18,7 +18,13 @@ export class JoueursPage implements OnInit {
   joueurNom!: string;
   joueurPrenom!: string;
   private joueurService: JoueurService = inject(JoueurService);
-  constructor(private router: Router) { }
+  private router: Router = inject(Router);
+
+  constructor() { }
+
+  ngOnInit() {
+    this.joueurs = this.joueurService.getAll()
+  }
 
   createJoueur(): void {
     if (this.joueurNom && this.joueurPrenom) {
@@ -35,10 +41,6 @@ export class JoueursPage implements OnInit {
 
   deleteJoueur(index: number): void {
     this.joueurService.deleteJoueur(index);
-  }
-
-  ngOnInit() {
-    this.joueurs = this.joueurService.getAll()
   }
 
 }

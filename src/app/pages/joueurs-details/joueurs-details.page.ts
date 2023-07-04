@@ -12,6 +12,7 @@ import { Joueur, JoueurService } from 'src/app/service/joueur.service';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
+
 export class JoueursDetailsPage implements OnInit {
   joueur!: Joueur;
   editedJoueur!: Joueur;
@@ -19,6 +20,11 @@ export class JoueursDetailsPage implements OnInit {
   avatarImage!: string;
   
   constructor() { }
+
+  ngOnInit() {
+    this.joueur = this.joueurService.getCurrentJoueur();
+    this.editedJoueur = Object.assign({}, this.joueur); 
+  }
 
   async uploadPhoto() {
     const image = await Camera.getPhoto({
@@ -31,13 +37,12 @@ export class JoueursDetailsPage implements OnInit {
     this.avatarImage = `data:image/jpeg;base64,${image.base64String}`;
   }
 
-  ngOnInit() {
-    this.joueur = this.joueurService.getCurrentJoueur();
-    this.editedJoueur = Object.assign({}, this.joueur); 
-  }
+  //Méthode pour sauvegarder les changements des informations du joueur
   save() {
     Object.assign(this.joueur, this.editedJoueur);
   }
+
+  //Méthode pour annuler les changements des informations du joueur
   cancel() {
     Object.assign(this.editedJoueur, this.joueur);
   }

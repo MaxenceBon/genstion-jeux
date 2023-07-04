@@ -21,29 +21,35 @@ export class PartieService {
   constructor() {
   }
 
-
-  createPartie(name: string, selectedJoueursNames: string[], selectedJeuxTitle: string[]): void {
+  //Méthode pour créer une partie
+  //Paramétres : libelle, selectedJoueursNoms, selectedJeuxTitre
+  createPartie(libelle: string, selectedJoueursNoms: string[], selectedJeuxTitre: string[]): void {
+    
+    //on récupére l'ensemble des joueurs et des jeux
     const allJoueurs = this.joueurService.getAll();
     const allJeux = this.jeuService.getAll();
     const selectedJoueurs: Joueur[] = [];
     const selectedJeux: Jeu[] = [];
 
-    selectedJoueursNames.forEach(JoueursName => {
-      const Joueurs = allJoueurs.find(joueur => this.getFullName(joueur) === JoueursName);
+    //on selectionne les joueurs à partir de leur prenom et nom
+    selectedJoueursNoms.forEach(JoueursNom => {
+      const Joueurs = allJoueurs.find(joueur => this.getFullName(joueur) === JoueursNom);
       if (Joueurs) {
         selectedJoueurs.push(Joueurs);
       }
     });
 
-    selectedJeuxTitle.forEach(jeuTitle => {
-      const jeu = allJeux.find(jeu => this.getTitre(jeu) === jeuTitle);
+    //on selectionne le jeu à partir de son titre
+    selectedJeuxTitre.forEach(jeuTitre => {
+      const jeu = allJeux.find(jeu => this.getTitre(jeu) === jeuTitre);
       if (jeu) {
         selectedJeux.push(jeu);
       }
     });
 
+    //on crée la partie
     const partie: Partie = {
-      libelle: name,
+      libelle: libelle,
       joueurs: selectedJoueurs,
       jeux: selectedJeux,
       gagnant: undefined
@@ -51,18 +57,24 @@ export class PartieService {
     this.parties.push(partie);
   }
 
+
+  //Méthode pour récupérer le nom complet d'un joueur
   private getFullName(joueur: Joueur): string {
     return `${joueur.prenom} ${joueur.nom}`;
   }
 
+
+  //Méthode pour récuperer le titre d'un jeu
   private getTitre(jeu: Jeu): string {
     return jeu.titre;
   }
 
+  //Méthode pour récupérer l'ensemble des parties
   getAll() {
     return this.parties;
   }
 
+  //Méthode pour supprimer une partie
   deletePartie(index: number): void {
     if (index >= 0 && index < this.parties.length) {
       this.parties.splice(index, 1);

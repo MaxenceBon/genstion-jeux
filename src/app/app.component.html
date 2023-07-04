@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -8,8 +8,8 @@
       </ion-header>
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item routerDirection="root" routerLinkActive="router-link-active" [href]="p.url" lines="none" detail="false">
+          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages">
+            <ion-item routerDirection="root" routerLinkActive="router-link-active" (click)="navigateTo(p.url)" lines="none" detail="false">
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>

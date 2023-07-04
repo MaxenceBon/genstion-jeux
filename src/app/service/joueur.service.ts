@@ -23,6 +23,8 @@ export class JoueurService {
     ]
   }
 
+  //Méthode pour créer un joueur
+  //Paramétres : joueurNom, joueurPrenom
   createJoueur(joueurNom: string, joueurPrenom: string): void {
     const joueur: Joueur = {
       prenom: joueurPrenom,
@@ -31,20 +33,23 @@ export class JoueurService {
     this.joueurs.push(joueur);
   }
 
+  //Méthode pour supprimer un joueur
   deleteJoueur(index: number): void {
     if (index >= 0 && index < this.joueurs.length) {
       this.joueurs.splice(index, 1);
     }
   }
 
+  //Méthode pour récupérer l'ensemble des joueurs
   getAll() {
     return this.joueurs;
   }
 
+  //Méthode pour modifier le joueur actuel
   setCurrentJoueur(joueur: Joueur) {
     this.currentJoueur = joueur;
   }
-
+  //Méthode pour récupérer le joueur actuel
   getCurrentJoueur(): Joueur {
     return this.currentJoueur;
   }
