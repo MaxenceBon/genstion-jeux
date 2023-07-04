@@ -18,14 +18,15 @@ export class JoueursDetailsPage implements OnInit {
   editedJoueur!: Joueur;
   private joueurService: JoueurService = inject(JoueurService);
   avatarImage!: string;
-  
-  constructor() { }
+
+  constructor( ) { }
 
   ngOnInit() {
     this.joueur = this.joueurService.getCurrentJoueur();
-    this.editedJoueur = Object.assign({}, this.joueur); 
+    this.editedJoueur = Object.assign({}, this.joueur);
   }
 
+  //Création d'un avatar avec une photo récupéré par capacitor/camera
   async uploadPhoto() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -33,8 +34,10 @@ export class JoueursDetailsPage implements OnInit {
       resultType: CameraResultType.Base64,
       source: CameraSource.Prompt,
     });
-  
-    this.avatarImage = `data:image/jpeg;base64,${image.base64String}`;
+
+    if (image) {
+      this.avatarImage = `data:image/jpeg;base64,${image.base64String}`;
+    }
   }
 
   //Méthode pour sauvegarder les changements des informations du joueur

@@ -26,19 +26,24 @@ export class JoueursPage implements OnInit {
     this.joueurs = this.joueurService.getAll()
   }
 
+  //Méthode pour créer un joueur
   createJoueur(): void {
     if (this.joueurNom && this.joueurPrenom) {
       this.joueurService.createJoueur(this.joueurNom, this.joueurPrenom);
+
+      //On reinitialise les champs
       this.joueurNom = '';
       this.joueurPrenom = '';
     }
   }
 
+  //Méthode pour récupérer le joueur actuel et afficher ses details
   joueurDetails(joueur: Joueur) {
     this.joueurService.setCurrentJoueur(joueur);
     this.router.navigateByUrl('joueurs-details');
   }
 
+  //Méthode pour supprimer un joueur
   deleteJoueur(index: number): void {
     this.joueurService.deleteJoueur(index);
   }

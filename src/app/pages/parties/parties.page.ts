@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActionSheetController, AlertController, IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { Partie, PartieService } from 'src/app/service/partie.service';
 import { Joueur, JoueurService } from 'src/app/service/joueur.service';
 import { Jeu, JeuService } from 'src/app/service/jeu.service';
@@ -33,23 +33,29 @@ export class PartiesPage implements OnInit {
     this.jeux = this.jeuService.getAll();
   }
 
+  //Méthode pour créer une partie
   createPartie(): void {
     if (this.partieName && this.selectedJoueurs && this.selectedJeux) {
       this.partieService.createPartie(this.partieName, this.selectedJoueurs, this.selectedJeux);
+      
+      //on reinitialise les champs
       this.partieName = '';
       this.selectedJeux = [];
       this.selectedJoueurs = [];
     }
   }
 
+  //Méthode pour récupérer le titre d'un jeu
   getTitre(jeu: Jeu): string {
     return jeu.titre;
   }
 
+  //Méthode pour récupérer le prenom et le nom d'un joueur
   getFullName(joueur: Joueur): string {
     return `${joueur.prenom} ${joueur.nom}`;
   }
 
+  //Méthode pour supprimer une partie
   deletePartie(index: number): void {
     this.partieService.deletePartie(index);
   }
