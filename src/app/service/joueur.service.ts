@@ -11,17 +11,18 @@ export interface Joueur {
 })
 export class JoueurService {
   private currentJoueur!: Joueur;
-  private joueurs: Joueur[];
 
-  constructor() {
-    this.joueurs = [
+  constructor() { }
+
+  //On crée une liste de joueurs
+  joueurs: Joueur[] =
+    [
       { prenom: 'Hercules', nom: 'Buto', partiesGagnees: 4 },
       { prenom: 'Sybille', nom: 'Boquet' },
       { prenom: 'Albert', nom: 'Zercker' },
       { prenom: 'Flora', nom: 'Daigoux' },
       { prenom: 'Alphonse', nom: 'Danlta' }
     ]
-  }
 
   //Méthode pour créer un joueur
   //Paramétres : joueurNom, joueurPrenom

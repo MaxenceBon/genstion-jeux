@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { ActionSheetController, IonicModule } from '@ionic/angular';
 import { Partie, PartieService } from 'src/app/service/partie.service';
 import { Joueur, JoueurService } from 'src/app/service/joueur.service';
 import { Jeu, JeuService } from 'src/app/service/jeu.service';
@@ -24,6 +24,7 @@ export class PartiesPage implements OnInit {
   private partieService: PartieService = inject(PartieService);
   private joueurService: JoueurService = inject(JoueurService);
   private jeuService: JeuService = inject(JeuService);
+  private actionSheetController: ActionSheetController = inject(ActionSheetController);
 
   constructor() { }
 
@@ -38,7 +39,7 @@ export class PartiesPage implements OnInit {
     if (this.partieName && this.selectedJoueurs && this.selectedJeux) {
       this.partieService.createPartie(this.partieName, this.selectedJoueurs, this.selectedJeux);
       
-      //on reinitialise les champs
+      //On reinitialise les champs
       this.partieName = '';
       this.selectedJeux = [];
       this.selectedJoueurs = [];
@@ -58,6 +59,25 @@ export class PartiesPage implements OnInit {
   //Méthode pour supprimer une partie
   deletePartie(index: number): void {
     this.partieService.deletePartie(index);
+  }
+
+  //Méthode pour afficher une alerte lors de la suppression d'une partie
+  async deletePartieAlert(index: number) {
+    const actionSheet = await this.actionSheetController.create({
+      buttons: [
+        {
+          text: 'Supprimer',
+          handler: () => this.deletePartie(index)
+        },
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          icon: 'close',
+          handler: () => {},
+        },
+      ],
+    });
+    actionSheet.present();
   }
 
 }

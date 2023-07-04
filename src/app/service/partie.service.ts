@@ -18,8 +18,7 @@ export class PartieService {
   private joueurService: JoueurService = inject(JoueurService);
   private jeuService: JeuService = inject(JeuService);
 
-  constructor() {
-  }
+  constructor() { }
 
   //Méthode pour créer une partie
   //Paramétres : libelle, selectedJoueursNoms, selectedJeuxTitre
@@ -31,7 +30,7 @@ export class PartieService {
     const selectedJoueurs: Joueur[] = [];
     const selectedJeux: Jeu[] = [];
 
-    //on selectionne les joueurs à partir de leur prenom et nom
+    //On selectionne les joueurs à partir de leur prénom et nom
     selectedJoueursNoms.forEach(JoueursNom => {
       const Joueurs = allJoueurs.find(joueur => this.getFullName(joueur) === JoueursNom);
       if (Joueurs) {
@@ -39,7 +38,7 @@ export class PartieService {
       }
     });
 
-    //on selectionne le jeu à partir de son titre
+    //On selectionne le jeu à partir de son titre
     selectedJeuxTitre.forEach(jeuTitre => {
       const jeu = allJeux.find(jeu => this.getTitre(jeu) === jeuTitre);
       if (jeu) {
@@ -47,7 +46,7 @@ export class PartieService {
       }
     });
 
-    //on crée la partie
+    //On crée la partie
     const partie: Partie = {
       libelle: libelle,
       joueurs: selectedJoueurs,
@@ -62,7 +61,6 @@ export class PartieService {
   private getFullName(joueur: Joueur): string {
     return `${joueur.prenom} ${joueur.nom}`;
   }
-
 
   //Méthode pour récuperer le titre d'un jeu
   private getTitre(jeu: Jeu): string {

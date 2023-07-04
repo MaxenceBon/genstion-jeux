@@ -31,7 +31,7 @@
                 <img alt="Image du jeu" height="150 px" width="300 px" src="assets/images/{{jeu.titre}}.jpg" />
               </ion-item>
             </ion-item>
-          
+
             <ion-item>
               <ion-label>Gagnant : {{partie.gagnant}}</ion-label>
             </ion-item>
@@ -40,7 +40,6 @@
         </ion-card-header>
         <ion-card-content>
           <ion-buttons>
-            <ion-button fill="solid" color="success">Selectionner gagnant</ion-button>
             <ion-button (click)="deletePartie(i)" fill="solid" color="danger">Delete</ion-button>
           </ion-buttons>
         </ion-card-content>
@@ -74,7 +73,7 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-      
+
 
       <ion-button expand="block" (click)="createPartie()">Créer la partie</ion-button>
     </ion-card-content>
